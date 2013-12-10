@@ -1,0 +1,16 @@
+<form>
+  <label>Mapping</label>
+  <fieldset autoRun="true" submitButton="false">
+    <input type="time" searchWhenChanged="true">
+      <default/>
+    </input>
+  </fieldset>
+  <row>
+    <map>
+      <title>all time count</title>
+      <searchString>index=aqicn | stats avg(aqi) as aqi by area | geocncity area | geostats latfield=city_lat longfield=city_lng  globallimit=0 avg(aqi) as aqi</searchString>
+      <earliestTime>0</earliestTime>
+      <latestTime>$latest$</latestTime>
+    </map>
+  </row>
+</form>

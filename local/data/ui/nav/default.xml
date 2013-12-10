@@ -1,0 +1,4 @@
+<nav>
+    <view name="search" default="true"/>
+    <a href="/dj/redirector/aqichina/home">AppFramework Home</a>
+</nav>
