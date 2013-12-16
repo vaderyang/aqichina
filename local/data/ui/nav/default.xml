@@ -1,4 +1,5 @@
 <nav>
-    <view name="search" default="true"/>
-    <a href="/dj/redirector/aqichina/home">AppFramework Home</a>
+   
+  <view name="newmap" default="true" />
+  <view name="cityview" />
 </nav>

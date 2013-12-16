@@ -1,0 +1,143 @@
+<form>
+  <label>City AQI Information</label>
+  <fieldset autoRun="true" submitButton="false">
+    <input type="dropdown" token="area" searchWhenChanged="true">
+      <label>Select a  city:</label>
+      <prefix>area="</prefix>
+      <suffix>"</suffix>
+      <default>上海</default>
+      <populatingSearch fieldForValue="area" fieldForLabel="area" earliest="-24h" latest="now">
+        <![CDATA[index=aqicn |head 250 | stats count by area]]>
+      </populatingSearch>
+    </input>
+    <input type="dropdown" token="value" searchWhenChanged="true">
+      <label>Select an index:</label>
+      <default>aqi</default>
+      <choice value="aqi">AQI</choice>
+      <choice value="o3">O3</choice>
+      <choice value="pm2_5">PM2.5</choice>
+      <choice value="pm10">PM10</choice>
+      <choice value="no2">NO2</choice>
+      <choice value="so2">SO2</choice>
+      <choice value="co">CO</choice>
+      
+    </input>
+    <input type="dropdown" token="timerange" searchWhenChanged="true">
+      <label>Select a time range:</label>
+      <default>-4d</default>
+      <choice value="-30d">Last 30 days</choice>
+      <choice value="-4d">Last 4 days</choice>
+      <choice value="-24h">Last 24 hours</choice>
+      <choice value="@d">Today</choice>
+    </input>
+  </fieldset>
+  <row>
+    <table>
+      <title>Latest Update:</title>
+      <searchString>index=aqicn | stats latest(_time) as _time latest(aqi) as AQI  latest(pm2_5) as PM2_5 latest(pm10) as PM10 latest(o3) as O3 latest(so2) as SO2 latest(co) as CO latest(no2) as NO2 by area | search $area$ |fields - area  </searchString>
+      <earliestTime>-4h@m</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="wrap">true</option>
+      <option name="rowNumbers">false</option>
+      <option name="dataOverlayMode">none</option>
+      <option name="drilldown">cell</option>
+    </table>
+  </row>
+  <row>
+    <chart>
+      <title>$value$ trend</title>
+      <searchString>index=aqicn | stats max($value$) as $value$ by area time_point  | search $area$ |eval _time = strptime(time_point, "%Y-%m-%dT%H:%M:%SZ") | fields _time $value$ | makecontinuous _time </searchString>
+      <earliestTime>$timerange$</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="wrap">true</option>
+      <option name="rowNumbers">false</option>
+      <option name="dataOverlayMode">none</option>
+      <option name="drilldown">row</option>
+      <option name="list.drilldown">full</option>
+      <option name="list.wrap">1</option>
+      <option name="maxLines">5</option>
+      <option name="raw.drilldown">full</option>
+      <option name="table.drilldown">1</option>
+      <option name="table.wrap">1</option>
+      <option name="type">list</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart">line</option>
+      <option name="charting.chart.nullValueMode">connect</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="count">10</option>
+    </chart>
+  </row>
+  <row>
+    <chart>
+      <title>$value$ prediction</title>
+      <searchString>index=aqicn | stats max($value$) as $value$ by area time_point  | search $area$ |eval _time = strptime(time_point, "%Y-%m-%dT%H:%M:%SZ") | fields _time $value$ | makecontinuous _time | predict $value$ </searchString>
+      <earliestTime>$timerange$</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="wrap">true</option>
+      <option name="rowNumbers">false</option>
+      <option name="dataOverlayMode">none</option>
+      <option name="drilldown">row</option>
+      <option name="list.drilldown">full</option>
+      <option name="list.wrap">1</option>
+      <option name="maxLines">5</option>
+      <option name="raw.drilldown">full</option>
+      <option name="table.drilldown">1</option>
+      <option name="table.wrap">1</option>
+      <option name="type">list</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart">line</option>
+      <option name="charting.chart.nullValueMode">connect</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="count">10</option>
+    </chart>
+      <chart>
+      <title>$value$ last 24 hour move average</title>
+      <searchString>index=aqicn | stats max($value$_24h) as $value$_24h by area time_point  | search $area$ |eval _time = strptime(time_point, "%Y-%m-%dT%H:%M:%SZ") | fields _time $value$_24h | makecontinuous _time  </searchString>
+      <earliestTime>$timerange$</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="wrap">true</option>
+      <option name="rowNumbers">false</option>
+      <option name="dataOverlayMode">none</option>
+      <option name="drilldown">row</option>
+      <option name="list.drilldown">full</option>
+      <option name="list.wrap">1</option>
+      <option name="maxLines">5</option>
+      <option name="raw.drilldown">full</option>
+      <option name="table.drilldown">1</option>
+      <option name="table.wrap">1</option>
+      <option name="type">list</option>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart">line</option>
+      <option name="charting.chart.nullValueMode">connect</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="count">10</option>
+    </chart>
+  </row>
+</form>
