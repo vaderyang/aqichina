@@ -1,5 +1,6 @@
-<dashboard script="autodiscover.js" stylesheet="mapview.css" refresh="3600" >
-  <label>China latest AQI Overview</label>
+<dashboard script="autodiscover.js" stylesheet="mapview.css" refresh="3600">
+  <label>China AQI Overview</label>
+  <description>Air Quality Index</description>
   <row>
     <single>
       <title>Latest Record</title>
@@ -39,7 +40,7 @@
       <option name="linkView">search</option>
     </single>
   </row>
-  <row >
+  <row>
     <table>
       <title>City List</title>
       <searchString>index=aqicn  |  stats latest(aqi) as aqi latest(_time) as _time by area | geocncity area | stats  max(aqi) as aqi by area  | rename area as name</searchString>
@@ -50,14 +51,13 @@
       <option name="dataOverlayMode">none</option>
       <option name="drilldown">row</option>
       <option name="count">20</option>
-
     </table>
     <html>
       <div id="mapSearch" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options="{  &quot;search&quot;: &quot;index=aqicn | stats latest(aqi) as aqi by area | geocncity area | stats max(aqi) as aqi by area city_lat city_lng | rename area as name city_lat as latitude city_lng as longitude&quot;,   &quot;cancelOnUnload&quot;: true,      &quot;preview&quot;: true    }"/>
-      <div id="eventChinaMap" style="height:600px" class="splunk-view" data-require="app/aqichina/components/chinamap/chinamap" data-options="{ &quot;fillcolor&quot;:&quot;silver&quot; ,&quot;managerid&quot;: &quot;mapSearch&quot;, &quot;valueField&quot;: &quot;aqi&quot;, &quot;groupField&quot;: &quot;area&quot;, &quot;linkUrl&quot;: &quot;/app/aqichina/area&quot;, &quot;destFormField&quot;: &quot;area&quot; }"/>
+      <div id="eventChinaMap" style="height:600px" class="splunk-view" data-require="app/aqichina/components/chinamap/chinamap" data-options="{ &quot;fillcolor&quot;:&quot;silver&quot; ,&quot;managerid&quot;: &quot;mapSearch&quot;, &quot;valueField&quot;: &quot;aqi&quot;, &quot;groupField&quot;: &quot;area&quot;, &quot;nameField&quot;:&quot;name&quot;,  &quot;destFormField&quot;: &quot;area&quot;,&quot;linkURL&quot;:&quot;/app/aqichina/cityview?form.area=%s&amp;form.value=aqi&amp;form.timerange=-4d &quot;}"/>
     </html>
   </row>
   <row>
-    <p> special thanks to data source from: http://pm25.in  </p>
+    <p>special thanks to data source from: http://pm25.in</p>
   </row>
 </dashboard>
