@@ -19,7 +19,7 @@ define(function(require, exports, module) {
 
     var _ = require('underscore');
     var d3 = require("../d3/d3");
-    var hmap = require("../heatmap.js/src/heatmap");
+    var hmap = require("../heatmap/src/heatmap");
     var SimpleSplunkView = require("splunkjs/mvc/simplesplunkview");
 
     require("css!./chinamap.css");
