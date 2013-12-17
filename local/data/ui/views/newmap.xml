@@ -51,6 +51,11 @@
       <option name="dataOverlayMode">none</option>
       <option name="drilldown">row</option>
       <option name="count">20</option>
+      <drilldown >
+      <link>
+         /app/aqichina/cityview?form.area=$row.name$&amp;form.value=aqi&amp;form.timerange=-4d
+       </link>
+     </drilldown> 
     </table>
     <html>
       <div id="mapSearch" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options="{  &quot;search&quot;: &quot;index=aqicn | stats latest(aqi) as aqi by area | geocncity area | stats max(aqi) as aqi by area city_lat city_lng | rename area as name city_lat as latitude city_lng as longitude&quot;,   &quot;cancelOnUnload&quot;: true,      &quot;preview&quot;: true    }"/>
