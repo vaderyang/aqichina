@@ -1,0 +1,12 @@
+{% extends 'splunkdj:base_with_account_bar.html' %}
+
+{% load splunkmvc %}
+
+{% load demoview %}
+
+{% block title %}{{your_app_name}}My Custom View{% endblock title %}
+
+{% block content %}
+    <h3>Custom View</h3>
+    {% demo id="mydemoview" %}
+{% endblock content %}

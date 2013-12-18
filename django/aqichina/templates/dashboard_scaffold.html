@@ -1,0 +1,64 @@
+{# Boilerplate for a Django Bindings template #}
+{% extends "splunkdj:base_with_app_bar.html" %}
+<!--
+    choice can be 
+        base.html   Defines the default basic block structure for the Web Framework templates. This template also includes metadata fields, such as the author and description.
+        base_with_basic_styles.html Extends base.html. This template also loads the Web Framework library, the Web Framework components, and all styles and default script libraries that are required to implement an app with Splunk's look and feel.
+        base_with_footer.html   Extends base_with_basic_styles.html. This template also includes a Splunk-style footer region.
+        base_with_account_bar.html  Extends base_with_footer.html. This template also includes Splunk chrome and system menus.
+        base_with_app_bar.html  Extends base_with_account_bar.html. This template also includes the Help and About menus and app navigation.
+
+-->
+{% load splunkmvc %}
+
+{% block title %}{{app_name}} Your page title goes here{% endblock title %}
+{% block css %}
+    <!-- Style sheets are loaded here -->
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}{{app_name}}/custom.css" />
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}splunkjs/css/dashboard.css" />
+    <style>
+        /* Define any page styles here*/
+    </style>
+{% endblock css %}
+{% block content %}
+<div class="dashboard-body container-fluid main-section-body">
+
+    <div class="row">
+        <div class="dashboard-header clearfix">
+            <h2>Page Title</h2>
+        </div>
+    </div>
+
+
+    <!-- A row with one cell -->
+    <div class="dashboard-row">
+        <div class="dashboard-cell" style="width: 100%;">
+            <div class="dashboard-panel">
+                <div class="panel-head">
+                    <h3>Panel Title</h3>
+                </div>
+                <div class="panel-body">
+                    <!-- Panel contents here -->
+                    <p>Text</p>
+
+                    <!-- Django template tag -->
+                    <!-- {% view id="viewid" %} -->
+
+                    <!-- JavaScript -->
+                    <!-- <div id="viewid"></div>  -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Place the next row here -->
+
+</div>
+{% endblock content%}
+
+{% block managers %}
+    {# Search managers go here #}
+{% endblock managers %}
+{% block js %}
+    {# JavaScript goes here #}
+{% endblock js %}

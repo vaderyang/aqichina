@@ -1,0 +1,33 @@
+{# Boilerplate for a Django Bindings template #}
+{% extends "splunkdj:base_with_app_bar.html" %}
+<!--
+    choice can be 
+        base.html   Defines the default basic block structure for the Web Framework templates. This template also includes metadata fields, such as the author and description.
+        base_with_basic_styles.html Extends base.html. This template also loads the Web Framework library, the Web Framework components, and all styles and default script libraries that are required to implement an app with Splunk's look and feel.
+        base_with_footer.html   Extends base_with_basic_styles.html. This template also includes a Splunk-style footer region.
+        base_with_account_bar.html  Extends base_with_footer.html. This template also includes Splunk chrome and system menus.
+        base_with_app_bar.html  Extends base_with_account_bar.html. This template also includes the Help and About menus and app navigation.
+
+-->
+{% load splunkmvc %}
+
+{% block title %}{{app_name}} Your page title goes here{% endblock title %}
+{% block css %}
+    <!-- Style sheets are loaded here -->
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}{{app_name}}/custom.css" />
+    <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}splunkjs/css/dashboard.css" />
+    <style>
+        /* Define any page styles here*/
+    </style>
+{% endblock css %}
+{% block content %}
+    <!-- You can use HTML and <div> tags for layout -->
+    {# Splunk views go here #}
+{% endblock content%}
+
+{% block managers %}
+    {# Search managers go here #}
+{% endblock managers %}
+{% block js %}
+    {# JavaScript goes here #}
+{% endblock js %}
