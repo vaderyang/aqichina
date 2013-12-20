@@ -1,6 +1,6 @@
 [nav/default]
 version = 6.0
-modtime = 1387184554.437455000
+modtime = 1387527224.563418000
 
 [views/mapping]
 owner = admin
@@ -40,3 +40,8 @@ export = none
 owner = admin
 version = 6.0
 modtime = 1387471731.572662000
+
+[inputs/monitor%3A%2F%2F%2FApplications%2FSplunk%2Fetc%2Fapps%2Faqichina%2Fopt%2Fhistoricpmdata.txt]
+owner = admin
+version = 6.0
+modtime = 1387509565.362665000

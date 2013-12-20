@@ -1,4 +1,4 @@
-{% extends 'splunkdj:base_with_basic_styles.html' %}
+{% extends 'splunkdj:base_with_app_bar.html' %}
 
 {% load splunkmvc %}
 
@@ -9,17 +9,17 @@
 <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}splunkjs/css/dashboard.css" />
 {% endblock css %}
 
-{% block title %}{{your_app_name}}A Fancy Map{% endblock title %}
+{% block title %}{{your_app_name}}AQI Map in Splunk{% endblock title %}
 
 {% block content %}
 <div class="dashboard-body container-fluid main-section-body">
 	<div class="row">
         <div class="dashboard-header clearfix">
-            <h2>Last 7 days animation</h2>
+            <h2>Last 3 days animation</h2>
         </div>
     </div>
     <div class="dashboard-row">
-    <div class="dashboard-cell" style="width: 20%;">
+    <div class="dashboard-cell" >
             <div class="dashboard-panel">
             
                 <div class="panel-body" id="mapcontrol">
@@ -65,7 +65,7 @@
 {% block managers %}
 
 {% searchmanager id="search1" search='index=aqicn | geocncity area | where city_lat!=0 | stats dc(area) as count list(city_lng) as _lng list(city_lat) as _lat list(area) as city list(aqi) as aqi by time_point |makemv  delim=" " city' preview=True
-earliest_time="-7d@d" cache=1800
+earliest_time="-3d@d" cache=1800
  %}
 
 {% endblock managers %}
