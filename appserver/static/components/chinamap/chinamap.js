@@ -84,15 +84,14 @@ define(function(require, exports, module) {
             this.$el.html("");
             var heatconfig = {
                         element: this.el,
-                        radius: 15,
+                        radius: availableWidth/150 + 1,
                         opacity: 75,
                         legend: {
                             position: 'br',
                             title: 'AQI Distribution'
                         } ,
-                        "gradient": { 0.01: "rgb(0,255,255)", 0.1: "rgb(0,255,0)", 0.25: "yellow", 0.45: "rgb(255,0,0)", 0.6 :"rgb(128,16,16)", 1.0: "rgb(0,0,0)"}
+                        "gradient": { 0.1: "rgb(0,255,255)", 0.2: "rgb(0,255,0)", 0.3: "yellow", 0.6: "rgb(255,0,0)", 0.8 :"rgb(128,16,16)", 1.0: "rgb(0,0,0)"}
                     };
-    
                     //creates and initializes the heatmap
             var heatmap = h337.create(heatconfig);
 
@@ -199,7 +198,8 @@ define(function(require, exports, module) {
             //    .attr("height", containerHeight);
             heatmap.set("width", containerWidth);
             heatmap.set("height", containerHeight);
-            heatmap.set("radius", containerWidth/100+5)
+            heatmap.set("radius", containerWidth/150+1)
+			heatmap.resize();
 
 	        d3.select(this.el)
                 .select("svg")
@@ -229,6 +229,7 @@ define(function(require, exports, module) {
 		    heatmap.store.setDataSet(data);
             svg.selectAll("circle")
                 .remove();
+			
             
             var node = svg.selectAll("circle")
                 .data(data.data).enter()
