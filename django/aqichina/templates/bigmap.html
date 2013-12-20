@@ -1,4 +1,4 @@
-{% extends 'splunkdj:base_with_app_bar.html' %}
+{% extends 'splunkdj:base_with_basic_styles.html' %}
 
 {% load splunkmvc %}
 
@@ -15,14 +15,26 @@
 <div class="dashboard-body container-fluid main-section-body">
 	<div class="row">
         <div class="dashboard-header clearfix">
-            <h2> Big Map</h2>
+            <h2>Last 7 days animation</h2>
         </div>
     </div>
+    <div class="dashboard-row">
+    <div class="dashboard-cell" style="width: 20%;">
+            <div class="dashboard-panel">
+            
+                <div class="panel-body" id="mapcontrol">
+                </div>
+
+            </div>
+        </div>
+        </div>
      <div class="dashboard-row">
         <div class="dashboard-cell" style="width: 100%;">
             <div class="dashboard-panel">
                 <div class="panel-head">
                     <h3>AQI Map</h3>
+
+
                 </div>
                 <div class="panel-body">
 
@@ -30,21 +42,21 @@
     	tileSource="openStreetMap"
     	maptype="default"
     	managerid="search1" 
-		fillcolor="silver" 
+		fillcolor="grey" 
 		valueField="aqi"
 		groupField="area"
-		nameField="name"
+		nameField="city"
 		destFormField="area"
-		height=650
+		height=600
+		longField="_lng"
+		latField="_lat"
+
 
 		%}
 				</div>
             </div>
         </div>
-        <div class="dashboard-cell" style="width: 0%;">
-            <div class="dashboard-panel">
-            </div>
-        </div>
+        
     </div>
 </div>
 {% endblock content %}
@@ -52,8 +64,29 @@
 	
 {% block managers %}
 
-{% searchmanager id="search1" search="index=aqicn | stats latest(aqi) as aqi by area | geocncity area | stats max(aqi) as aqi by area city_lat city_lng | rename area as name city_lat as latitude city_lng as longitude" preview=True %}
+{% searchmanager id="search1" search='index=aqicn | geocncity area | where city_lat!=0 | stats dc(area) as count list(city_lng) as _lng list(city_lat) as _lat list(area) as city list(aqi) as aqi by time_point |makemv  delim=" " city' preview=True
+earliest_time="-7d@d" cache=1800
+ %}
+
 {% endblock managers %}
+
+<!-- "index=aqicn | stats latest(aqi) as aqi by area | geocncity area | stats max(aqi) as aqi by area city_lat city_lng | rename area as name city_lat as latitude city_lng as longitude" preview=True -->
+{% block js %}
+<script>
+    var deps = [
+        "splunkjs/ready!"
+    ];
+    require(deps, function(mvc) {
+        var modSearch = splunkjs.mvc.Components.getInstance("search1");
+
+        modSearch.on('search:done', function(properties) {
+            DataAnimationStart = true;
+        });
+
+    });
+</script>
+{% endblock js %}
+
 
 
 

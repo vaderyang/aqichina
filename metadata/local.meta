@@ -28,3 +28,15 @@ modtime = 1387256742.642102000
 [app/package/check_for_updates]
 version = 6.0
 modtime = 1387256742.647383000
+
+[lookups/citypopulation.csv]
+export = none
+owner = admin
+version = 6.0
+modtime = 1387471692.713462000
+
+[transforms/citypop]
+export = none
+owner = admin
+version = 6.0
+modtime = 1387471731.572662000

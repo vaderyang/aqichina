@@ -6,13 +6,26 @@ z-index:1!important;
 pointer-events: none;
 }
 
-
-.province {
-  fill: silver;
+.background {
+  pointer-events: all;
 }
 
-.active{
+
+.province.hover {
+  fill: orange;
+  fill-opacity: 0.3;
+  filter: "url(#dropshadow)";
+          
+}
+
+.province {
+  fill: orange;
+  fill-opacity: 0.6;
+}
+
+.province.active{
   fill: lightgrey;
+
 }
 
 .d3-tip {
@@ -24,3 +37,18 @@ pointer-events: none;
   border-radius: 2px;
 }
 
+.label {
+  fill: #777;
+}
+
+.hour.label {
+  font: 500 24px "Helvetica Neue";
+  fill: #777;
+  background-color : white;
+}
+
+
+.hour.label.active {
+  fill: #aaa;
+  background-color : orange;
+}
