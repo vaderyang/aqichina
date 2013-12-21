@@ -1,18 +1,15 @@
 Introduction
 ------------
-Describe your application here.
+An App showing AQI map in China.
 
 Installation
 ------------
-Describe how to install your application here (if applicable).
+Just download from Splunkbase and install from Splunk
 
 Usage
 -----
-Describe how to use your application here.
+open through app menu in splunk
 
 TODO:
 -----
-If you intend to upload this application to SplunkBase, we strongly recommend 
-that you update the app.conf file (located in your app's /default directory) 
-with your name, a one-sentence description of your application, and the
-version number of your application.
+any comments or suggestion please send email to vader@10data.com
