@@ -84,7 +84,7 @@ define(function(require, exports, module) {
             this.$el.html("");
             var heatconfig = {
                         element: this.el,
-                        radius: availableWidth/150 + 1,
+                        radius: availableWidth/150 +3,
                         opacity: 75,
                         legend: {
                             position: 'br',
@@ -198,7 +198,7 @@ define(function(require, exports, module) {
             //    .attr("height", containerHeight);
             heatmap.set("width", containerWidth);
             heatmap.set("height", containerHeight);
-            heatmap.set("radius", containerWidth/150+1)
+            heatmap.set("radius", containerWidth/150+3)
 			heatmap.resize();
 
 	        d3.select(this.el)
@@ -235,8 +235,8 @@ define(function(require, exports, module) {
                 .data(data.data).enter()
                 .append('circle')
                 .attr("r", 4)
-                .attr("fill", "steelblue")
-                .style("opacity", "65")
+                .attr("fill", "grey")
+                .style("opacity", "0.2")
                 .attr("cx", function(d) { return d.x})
                 .attr("cy", function(d) { return d.y})
                 //.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
