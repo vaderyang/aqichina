@@ -228,7 +228,7 @@ define(function(require, exports, module) {
 
 
 
-            d3.timer(timerdraw, 500);
+            d3.timer(timerdraw, 250);
 
 
             function timerdraw(){
@@ -244,7 +244,7 @@ define(function(require, exports, module) {
                     } else {
                         $(window).resize();
                         //$(window).resize(this, _.debounce(this._handleResize, 20));
-                        d3.timer(timerdraw, 500);
+                        d3.timer(timerdraw, 250);
                         return true;
                     }
                 } 

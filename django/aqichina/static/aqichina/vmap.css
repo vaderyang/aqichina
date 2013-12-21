@@ -1,7 +1,13 @@
+.map {
+fill:none;
+}
 
+.map.large {
+  width:100%;
+  min-height: 600px;
+}
 
 canvas {
-margin-top: 36px;
 z-index:1!important; 
 pointer-events: none;
 }
@@ -9,18 +15,32 @@ pointer-events: none;
 .background {
   pointer-events: all;
 }
+#mapcontrol {
 
+}
+#slider1 {
+  width: 100%;
+  
+}
+#mymap {
+  position:relative;
+}
+
+#aqimap {
+  cursor:pointer;
+  position:relative;
+}
 
 .province.hover {
   fill: orange;
   fill-opacity: 0.3;
-  filter: "url(#dropshadow)";
           
 }
 
 .province {
-  fill: orange;
-  fill-opacity: 0.6;
+  fill:   lightsteelblue;
+  fill-opacity: 0.9;
+  stroke : white;
 }
 
 .province.active{
@@ -28,6 +48,45 @@ pointer-events: none;
 
 }
 
+.container {
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+}
+
+
+
+.page-header {
+padding-bottom: 9px;
+margin: 40px 0 20px;
+border-bottom: 1px solid #eee;
+}
+.row {
+margin-right: -15px;
+margin-left: -15px;
+}
+h1 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+font-weight: 500;
+line-height: 1.1;
+color: inherit;
+margin-top: 20px;
+margin-bottom: 10px;
+font-size: 36px;
+}
+
+.lead {
+font-size: 21px;
+margin-bottom: 20px;
+
+font-weight: 200;
+line-height: 1.4;
+}
+p {
+  margin: 0 0 10px;
+  display: block;
+}
 .d3-tip {
   line-height: 1;
   font-weight: bold;
@@ -37,14 +96,17 @@ pointer-events: none;
   border-radius: 2px;
 }
 
-.label {
-  fill: #777;
+.customlabel {
+  width: 280px;
+  height: 40px;
+  color: black;
+  line-height: 30px;
+  text-align: center;
+  font-size : 24px;
 }
 
-.hour.label {
-  font: 500 24px "Helvetica Neue";
+.hour.customlabel {
   fill: #777;
-  background-color : white;
 }
 
 

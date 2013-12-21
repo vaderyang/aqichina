@@ -67,7 +67,7 @@
 	
 {% block managers %}
 
-{% searchmanager id="search1" search='index=aqicn | geocncity area | where city_lat!=0 | stats dc(area) as count list(city_lng) as _lng list(city_lat) as _lat list(area) as city list(aqi) as aqi by time_point |makemv  delim=" " city' preview=True
+{% searchmanager id="search1" search='index=aqicn | dedup time_point area| geocncity area | where city_lat!=0 | stats dc(area) as count list(city_lng) as _lng list(city_lat) as _lat list(area) as city list(aqi) as aqi by time_point |makemv  delim=" " city' preview=True
 earliest_time="-3d@d" cache=1800
  %}
 
