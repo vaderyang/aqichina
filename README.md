@@ -6,7 +6,7 @@ Including a China map as simple xml components and another China map defined in 
 
 Animated graph to show the polution trends and simple drilldown to see the detail city selected.
 
-Installation
+Installation:
 ------------
 get a copy of splunk and install.
 
@@ -21,10 +21,13 @@ splunk restart
 use browser to access http://your_splunk_ip:8000/app/aqichina/
 
 
-Usage
+Screenshots:
 -----
-3 tabs to click, one by one ^_~
 
+![alt text](https://github.com/vaderyang/aqichina/raw/master/Screenshot1.png "Main Screen")
+![alt text](https://github.com/vaderyang/aqichina/raw/master/Screenshot2.png "Detail Screen")
+![alt text](https://github.com/vaderyang/aqichina/raw/master/Screenshot3.png "Detail Screen2")
+![alt text](https://github.com/vaderyang/aqichina/raw/master/Screenshot1.png "Big map")
 TODO:
 -----
 any comments or suggestion please send email to vader@10data.com
