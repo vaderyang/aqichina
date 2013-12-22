@@ -27,7 +27,7 @@ Screenshots:
 ![alt text](https://github.com/vaderyang/aqichina/raw/master/Screenshot1.png "Main Screen")
 ![alt text](https://github.com/vaderyang/aqichina/raw/master/Screenshot2.png "Detail Screen")
 ![alt text](https://github.com/vaderyang/aqichina/raw/master/Screenshot3.png "Detail Screen2")
-![alt text](https://github.com/vaderyang/aqichina/raw/master/Screenshot1.png "Big map")
+![alt text](https://github.com/vaderyang/aqichina/raw/master/Screenshot4.png "Big map")
 TODO:
 -----
 any comments or suggestion please send email to vader@10data.com
