@@ -1,6 +1,8 @@
 Introduction
 ------------
-An App showing AQI map in China.
+An App showing AQI map in China. 
+included a China map as simple xml components and another China map defined in django templates for easier create future works both in simple xml or in django bindings. 
+Animated graph to show the polution trends and simple drilldown to see the detail city selected.
 
 Installation
 ------------
@@ -8,8 +10,14 @@ Just download from Splunkbase and install from Splunk
 
 Usage
 -----
-open through app menu in splunk
+open through app menu in splunk. Keep internet connection from Splunk installation to keep live data.
 
 TODO:
 -----
 any comments or suggestion please send email to vader@10data.com
+
+CREDIT:
+-----
+d3js.org
+heatmapjs.com
+pm25.in  data source! 
