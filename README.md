@@ -32,5 +32,9 @@ any comments or suggestion please send email to vader@10data.com
 CREDIT:
 -----
 d3js.org
+
 heatmapjs.com
+
 pm25.in  data source! 
+
+jQuery
